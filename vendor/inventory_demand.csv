@@ -1,0 +1,7 @@
+name,year,month,demand,frequency,probability,acumulative_probability
+SKU1,2019,January,12345,23423,0.23,0.34
+SKU1,2019,February,12345,23423,0.23,0.34
+SKU1,2019,March,12345,23423,0.23,0.34
+SKU2,2019,January,42123,43434,0.45,0.11
+SKU2,2019,February,12345,23423,0.23,0.34
+SKU2,2019,March,12345,23423,0.23,0.34

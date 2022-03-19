@@ -1,0 +1,22 @@
+<%= form_with url: sign_in_path do |form| %>
+  <div class="sign-up-box">
+  <h3>Sign In</h3>
+
+    <div class="mb-3">
+      <%= form.label :email %>
+      <%= form.text_field :email, class: "form-control", placeholder: "Steve@apple.com" %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :password %>
+      <%= form.password_field :password, class: "form-control", placeholder: "Password" %>
+    </div>
+
+    <div class="signup-botton">
+      <div class="mb-3">
+        <%= form.submit "Sign In", class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+
+<% end %>

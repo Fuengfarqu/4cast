@@ -1,0 +1,42 @@
+<div id="<%= dom_id frequency_distribution %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">item:</strong>
+    <%= frequency_distribution.item.name %>
+  </p>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Month:</strong>
+    <%= frequency_distribution.month %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Year:</strong>
+    <%= frequency_distribution.year %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Demand:</strong>
+    <%= frequency_distribution.demand %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Frequency:</strong>
+    <%= frequency_distribution.frequency %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Probability:</strong>
+    <%= frequency_distribution.probability %>
+  </p>
+
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Accumulative probability:</strong>
+    <%= frequency_distribution.acumulative_probability %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this frequency distribution", frequency_distribution, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this frequency distribution', edit_frequency_distribution_path(frequency_distribution), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

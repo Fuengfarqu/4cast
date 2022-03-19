@@ -1,0 +1,13 @@
+<div class="d-flex align-items-center justify-content-center">
+  <h1>Welcome to my page</h1>
+  <a href="/sign_up">Sign up to Faro</a>
+</div>
+
+  <% if @user %>
+    Signed in as: <%= @user.email %>
+    <%= button_to "Sign out", sign_out_path, method: :delete %>
+
+  <% end %>
+
+
+

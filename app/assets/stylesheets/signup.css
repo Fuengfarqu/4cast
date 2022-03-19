@@ -1,0 +1,33 @@
+
+
+.content-container .sign-up-box {
+  /* display: flexbox; */
+  width: 500px;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+  margin-bottom: 400px !important;
+  font-family: 'sofia-pro', sans-serif;
+}
+
+.signup-botton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 200px;
+  padding-right: 200px;
+  padding-bottom: 0px;
+}
+
+.btn {
+  width: 100px;
+}
+
+.content-container {
+  /* height: 100%; */
+  background-image: url(login-bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}

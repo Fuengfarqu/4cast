@@ -1,0 +1,3 @@
+email,first_name,last_name,password,password_confirmation
+abc@gmail.com,first,last,123456,123456
+abd@example.com,name,user,123456,123456
