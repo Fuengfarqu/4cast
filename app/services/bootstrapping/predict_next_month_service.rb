@@ -1,6 +1,7 @@
 class PredictNextMonthService
-  def initialize(demand, original_demand)
-    @demand = demand
+  def initialize(new_demands, original_demand)
+    @new_demand = nil
+    @all_demands = original_demand + new_demands
     @original_demand = original_demand
   end
 
@@ -11,13 +12,13 @@ class PredictNextMonthService
     set_rand_uniform_distribution
     add_new_occurance
     add_forecast_value_to_demand
-    @demand
+    @new_demand
   end
 
   private
   def set_occurence_of_demand
     # Record a month with a demand occurrence as ‘1’ and a month without a demand occurrence as ‘0’
-    @occurrence_of_demand = @demand.map do |d|
+    @occurrence_of_demand = @all_demands.map do |d|
       d > 0 ? 1 : d
     end
   end
@@ -93,9 +94,9 @@ class PredictNextMonthService
 
   def add_forecast_value_to_demand
     if @occurrence_of_demand.last == 1
-      @demand << perform_jittering
+      @new_demand = perform_jittering
     else
-      @demand << 0
+      @new_demand = 0
     end
   end
 

@@ -31,14 +31,9 @@ class DashboardController < ApplicationController
     @predictions = demand_forecast_values(original_demand)
     @graphable_demand_forecast_values = graphable_demand_forecast_values(@predictions, original_demand)
     @graphable_colors = ["#71FF33", "#FF5733"] + Array.new(@graphable_demand_forecast_values.count - 2, "#3393FF")
-    @graphable_histogram = @predictions.flatten.histogram.transpose
-
-    @arrays_of_forecasted_demand = []
-    forecasted_demand_months = @predictions.map do |new_value|
-        @arrays_of_forecasted_demand << new_value[number_of_orginal_demand..-1]
-    end      
+    @graphable_histogram = @predictions.flatten.histogram.transpose     
     
-    @sum_of_demand_in_each_array = @arrays_of_forecasted_demand.map do |demands|
+    @sum_of_demand_in_each_array = @predictions.map do |demands|
         @sum_of_demand_in_each_array = demands.sum(0.0)
     end
 
@@ -76,23 +71,25 @@ class DashboardController < ApplicationController
     number_of_forecasted_period = 12
 
     50.times do
-      demand = original_demand.dup
+      demands = []
       number_of_forecasted_period.times do
-        demand = PredictNextMonthService.new(demand, original_demand).call
+        demands << PredictNextMonthService.new(demands, original_demand).call
       end
-      predictions << demand
+      predictions << demands
     end
     predictions
   end
 
   def graphable_demand_forecast_values(predictions, original_demand)
-    # @max_numbers = @arrays_of_forecasted_demand.transpose.map(&:max)
-    # @min_numbers = @arrays_of_forecasted_demand.transpose.map(&:min)
-    # graphable_data = @arrays_of_forecasted_demand.unshift(@max_numbers, @min_numbers)
-    graphable_data = predictions.map.with_index do |prediction, index|
+    predictions_with_min_max = predictions.dup
+    max_numbers = predictions_with_min_max.transpose.map(&:max)
+    min_numbers = predictions_with_min_max.transpose.map(&:min)
+
+    predictions_with_min_max = predictions_with_min_max.unshift(max_numbers, min_numbers)
+    graphable_data = predictions_with_min_max.map.with_index do |demands, index|
       { 
         name: index, 
-        data: prediction[original_demand.count..-1].map.with_index {|pr,index| ["Month #{[index+1]}",pr]}
+        data: demands.map.with_index {|pr,index| ["Month #{[index+1]}",pr]}
       }
     end
   end
