@@ -3,21 +3,21 @@
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
   <% end %>
 
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Frequency distributions</h1>
-    <%= link_to 'New frequency distribution', new_frequency_distribution_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+  <div class="create-container flex justify-between items-center">
+    <%= link_to 'Creat a new set of data', new_frequency_distribution_path, class: "px-5 fs-5" %>
   </div>
 
-  <div id="frequency_distributions" class="min-w-full">
-    <%= render @frequency_distributions %>
-  </div>
+  <%= form_tag import_items_path, multipart: true do %>
+    <div class="upload-container input-group mb-3">
+      <div class="mb-3">
+        <%= file_field_tag :file, class: "form-control", id: "formFile" %>
+      </div>
+      <div class="input-group-append">
+        <%= submit_tag "Upload", class: "btn btn-secondary" %>
+      </div>
+    </div>
+  <% end %>
 
-  <span class="btn btn-large btn-blue btn-file">
-    <%= form_tag import_items_path, multipart: true do %>
-      <label for="file">File to Upload</label>
-      <%= file_field_tag :file %>
-      <%= submit_tag "Upload" %>
-    <% end %>
-  </span>
+  <%= @random_seed %>
 
 </div>

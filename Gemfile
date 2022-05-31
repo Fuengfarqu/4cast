@@ -67,3 +67,6 @@ group :development do
   # gem "spring"
 end
 
+gem "chartkick"
+
+gem 'histogram', '~> 0.2.4.1'

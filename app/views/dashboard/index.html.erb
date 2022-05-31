@@ -1,3 +1,56 @@
-<h1>Dashboard</h1>
-Sum:
-<%= @sum_of_sku1 %>
+<div class="w-full">
+
+  <div class="container-sm">
+    <div class="container bg-light">
+      <div>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Home</button>
+          <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
+          <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</button>
+        </div>
+      </div>
+      <br><br><br><br>
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+          <%= line_chart(@graphable_demand_forecast_values, min: 0, max: 15, points: false, legend: false, colors: @graphable_colors) %>
+          <%= @graphable_demand_forecast_values %>
+          </div>
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+          <%= line_chart(@graphable_histogram, points: false, legend: false, colors: []) %>
+
+        </div>
+        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+          <%= column_chart(@graphable_sum_of_demand_in_each_array, xtitle: "Annual year", ytitle: "Frequency", points: false, legend: false, colors: []) %>
+        </div>
+      </div>
+
+      <br><br>
+
+      <p class="text-primary">
+      <%= @sku %>
+      <br><br>
+
+      Sample Mean: <%= @mean_of_all_array.round(4) %>
+      <br>
+      Standard Deviation: <%= @standard_deviation.round(4) %>
+      <br>
+      Confidence Interval: <%= @confidence_interval_95.round(4) %>
+      <br>
+      The 95% confidence interval is <%= @mean_of_all_array.round(4) %> ± <%= @confidence_interval_95.round(4) %>
+
+
+
+      <%#= @sum_of_demand_in_each_array #%>
+      <%#= @graphable_sum_of_demand_in_each_array #%>
+
+
+
+      </p>
+    </div>
+  </div>
+
+
+
+
+
+</div>

@@ -1,9 +1,12 @@
+require 'histogram/array'
+
 class FrequencyDistributionsController < ApplicationController
   before_action :set_frequency_distribution, only: %i[ show edit update destroy ]
 
   # GET /frequency_distributions or /frequency_distributions.json
   def index
     @frequency_distributions = FrequencyDistribution.all
+    @items = Item.all.order(created_at: :ASC)
   end
 
 

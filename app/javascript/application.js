@@ -3,3 +3,6 @@ import "@hotwired/turbo-rails"
 import "controllers"
 
 Turbo.session.drive = false
+
+import "chartkick"
+import "Chart.bundle"

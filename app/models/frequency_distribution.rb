@@ -1,3 +1,7 @@
+require "matrix"
+require 'histogram/array'
+
+
 class FrequencyDistribution < ApplicationRecord
   belongs_to :item
 
@@ -30,5 +34,13 @@ class FrequencyDistribution < ApplicationRecord
     frequency_distribution.assign_attributes row.to_hash.slice(:demand, :frequency, :probability, :acumulative_probability)
     frequency_distribution.item_id = item.id
     frequency_distribution
+  end
+
+  def month_year
+    "#{month.capitalize} #{year}"
+  end
+
+  def print_matrix(m)
+    puts m.to_a.map(&:inspect)
   end
 end
