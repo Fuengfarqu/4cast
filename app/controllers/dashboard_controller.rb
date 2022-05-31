@@ -22,6 +22,7 @@ class DashboardController < ApplicationController
   end
 
   def perform_bootstrapping
+    srand(101)
     @sku = "SKU-05465464684"
     original_demand = [0, 1, 1, 1, 1, 3, 4, 3, 0, 0, 0, 0, 1, 1, 0, 1, 0, 3, 3, 3, 0, 0, 0, 0]
     number_of_orginal_demand = original_demand.size
@@ -85,8 +86,8 @@ class DashboardController < ApplicationController
   end
 
   def graphable_demand_forecast_values(predictions, original_demand)
-    @max_numbers = @arrays_of_forecasted_demand.transpose.map(&:max)
-    @min_numbers = @arrays_of_forecasted_demand.transpose.map(&:min)
+    # @max_numbers = @arrays_of_forecasted_demand.transpose.map(&:max)
+    # @min_numbers = @arrays_of_forecasted_demand.transpose.map(&:min)
     # graphable_data = @arrays_of_forecasted_demand.unshift(@max_numbers, @min_numbers)
     graphable_data = predictions.map.with_index do |prediction, index|
       { 
