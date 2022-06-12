@@ -1,8 +1,9 @@
 class PredictNextMonthService
-  def initialize(new_demands, original_demand)
+  def initialize(new_demands:, original_demand:, jittering_type:)
     @new_demand = nil
     @all_demands = original_demand + new_demands
     @original_demand = original_demand
+    @jittering_type = jittering_type
   end
 
   def call
@@ -101,6 +102,6 @@ class PredictNextMonthService
   end
 
   def perform_jittering
-    Jittering.new(@original_demand).call
+    Jittering.new(original_demand: @original_demand, jittering_type: @jittering_type).call
   end
 end

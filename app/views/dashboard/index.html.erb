@@ -1,54 +1,48 @@
 <div class="w-full">
-
+  <br>
   <div class="container-sm">
-    <div class="container bg-light">
-      <div>
+    <div class="container-sm bg-light" style="padding-left: 0px;padding-right: 0px;padding-bottom: 20px;">
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-          <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Home</button>
-          <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
-          <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</button>
+          <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Histogram</button>
+          <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Bootstrap Results</button>
+        </div>
+      <div class="graph-container">
+        <div class="fs-6 text">
+          Product:
+        </div>
+        <div class="fs-4 text">
+          <%= @sku_name %>
         </div>
       </div>
-      <br><br><br><br>
       <div class="tab-content" id="nav-tabContent">
         <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-          <%= line_chart(@graphable_demand_forecast_values, min: 0, max: 15, points: false, legend: false, colors: @graphable_colors) %>
-          <%= @graphable_demand_forecast_values %>
+          <%= column_chart(@graphable_sum_of_demand_in_each_array, xtitle: "Annual demand", ytitle: "Frequency", points: false, colors: ["#0d6efd"], library: { legend: { position: "left", labels: { fontSize: 50 } } }) %>
           </div>
         <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-          <%= line_chart(@graphable_histogram, points: false, legend: false, colors: []) %>
-
-        </div>
-        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-          <%= column_chart(@graphable_sum_of_demand_in_each_array, xtitle: "Annual year", ytitle: "Frequency", points: false, legend: false, colors: []) %>
+          <%= line_chart(@graphable_demand_forecast_values, xtitle: "Period", ytitle: "Demand (unit)", points: false, legend: false, colors: @graphable_colors) %>
         </div>
       </div>
-
-      <br><br>
-
-      <p class="text-primary">
-      <%= @sku %>
-      <br><br>
-
-      Sample Mean: <%= @mean_of_all_array.round(4) %>
-      <br>
-      Standard Deviation: <%= @standard_deviation.round(4) %>
-      <br>
-      Confidence Interval: <%= @confidence_interval_95.round(4) %>
-      <br>
-      The 95% confidence interval is <%= @mean_of_all_array.round(4) %> ± <%= @confidence_interval_95.round(4) %>
-
-
-
-      <%#= @sum_of_demand_in_each_array #%>
-      <%#= @graphable_sum_of_demand_in_each_array #%>
-
-
-
-      </p>
     </div>
   </div>
+  <br>
 
+  <div class="container-sm two-boxes">
+    <div class="container bg-light me-2">
+      Sample Size: <%= @sum_of_demand_in_each_array.size %><br>
+      Sample Mean: <%= @mean_of_all_array.round(4) %><br>
+      Standard Deviation: <%= @standard_deviation.round(4) %><br>
+    </div>
+
+    <div class="container bg-light ms-2">
+      The 90% confidence interval is <%= @mean_of_all_array.round(4) %> ± <%= @confidence_interval_90.round(4) %><br>
+      The 95% confidence interval is <%= @mean_of_all_array.round(4) %> ± <%= @confidence_interval_95.round(4) %><br>
+      The 99% confidence interval is <%= @mean_of_all_array.round(4) %> ± <%= @confidence_interval_99.round(4) %><br>
+    </div>
+
+  </div>
+  
+
+  <br>
 
 
 

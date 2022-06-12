@@ -18,6 +18,7 @@
 body {
   min-height: 100vh;
   min-height: -webkit-fill-available;
+  font-family: 'Inter', sans-serif !important;
 }
 
 html {
@@ -36,4 +37,19 @@ main {
 .content-container {
   margin-left: 280px;
   width: 100%;
+}
+
+.element.style {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.graph-container {
+  margin-top: 30px;
+  margin-left: 10px;
+  margin-bottom: 30px;
+}
+
+.two-boxes {
+  display: flex;
 }

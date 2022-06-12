@@ -11,8 +11,8 @@ Rails.application.routes.draw do
   resources :posts
   
   root to: "main#index"
-  get "dashboard" => "dashboard#index"
-
+  get "dashboard1" => "dashboard#dashboard_1"
+  get "dashboard2" => "dashboard#dashboard_2"
   get "inventory_report" => "inventoryreport#index"
 
   get "about_us" => "about#index"
